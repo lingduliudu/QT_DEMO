@@ -1,5 +1,7 @@
 {
-	"dburl":"jdbc:mysql/abc/sd"
-	"username":"zhangsan",
-	"password":"1acd"
+    "dbName": "test",
+    "host": "127.0.0.1",
+    "password": "root",
+    "port": "3306",
+    "username": "root"
 }

@@ -1,0 +1,8 @@
+package {{entityPackage}}
+import {{className}}
+public class {{className}}{
+    {% for column in columns %}
+      public {{ column.dataType }} {{column.columnName}};
+    {% endfor %}
+
+}

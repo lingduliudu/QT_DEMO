@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Entity",
+        "needCreate": true,
+        "overwrite": true,
+        "path": "{{var1}}/{{className}}Entity.java"
+    },
+    {
+        "name": "Request",
+        "needCreate": false,
+        "overwrite": true,
+        "path": "${1}/${4}/T2${ClassName}.java"
+    },
+    {
+        "name": "IService",
+        "needCreate": false,
+        "overwrite": false,
+        "path": "${1}/${4}/T2${ClassName}.java"
+    },
+    {
+        "name": "Service",
+        "needCreate": false,
+        "overwrite": true,
+        "path": "${1}/${4}/T2${ClassName}.java"
+    },
+    {
+        "name": "Entity",
+        "needCreate": false,
+        "overwrite": true,
+        "path": "${1}/${4}/T2${ClassName}.java1"
+    },
+    {
+        "name": "Entity",
+        "needCreate": false,
+        "overwrite": true,
+        "path": "${1}/${4}/T2${ClassName}.java"
+    },
+    {
+        "name": "Entity",
+        "needCreate": false,
+        "overwrite": true,
+        "path": "${1}/${4}/T2${ClassName}.java3"
+    }
+]
