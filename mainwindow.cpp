@@ -133,7 +133,7 @@ void MainWindow::createFile(){
         QMessageBox::critical(this,"提示","数据库连接失败");
         return;
     }
-    QSqlQuery query("select COLUMN_NAME columnName,DATA_TYPE dataType,if(COLUMN_KEY='PRI',1,0) isPrimary from information_schema.`COLUMNS`  where TABLE_NAME='stu' and TABLE_SCHEMA='test'  ORDER BY ORDINAL_POSITION ");
+    QSqlQuery query("select COLUMN_NAME columnName,DATA_TYPE dataType,if(COLUMN_KEY='PRI',1,0) isPrimary from information_schema.`COLUMNS`  where TABLE_NAME='"+ui->tableName->text()+"' and TABLE_SCHEMA='"+dbConfig.value("dbName").toString()+"'  ORDER BY ORDINAL_POSITION ");
     nlohmann::json data;
     data["columns"] = nlohmann::json::array();
     while (query.next()) {
