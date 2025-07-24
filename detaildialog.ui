@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>detaildialog</class>
+ <widget class="QDialog" name="detaildialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>745</width>
+    <height>534</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>681</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Microsoft YaHei UI&quot;;</string>
+   </property>
+   <property name="title">
+    <string>参数</string>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>631</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="servicePackage"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>IService</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="ext1Package"/>
+     </item>
+     <item row="8" column="3">
+      <widget class="QLineEdit" name="ext2Package"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="iservicePackage"/>
+     </item>
+     <item row="6" column="2">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Feign</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Ext1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Service</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="3">
+      <widget class="QLineEdit" name="feignPackage"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>IFeign</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Entity</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Request</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="2">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Ext2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="entityPackage"/>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="ifeignPackage"/>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLineEdit" name="requestPackage"/>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>IMapper</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="imapperPackage"/>
+     </item>
+     <item row="7" column="2">
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Controller</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="3">
+      <widget class="QLineEdit" name="controllerPackage"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>230</y>
+     <width>681</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 11pt &quot;Microsoft YaHei UI&quot;;</string>
+   </property>
+   <property name="title">
+    <string>变量</string>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>631</width>
+      <height>182</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="5" column="3">
+      <widget class="QLineEdit" name="var4"/>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>{{var5}}</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>{{var1}}</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>{{var4}}</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="3">
+      <widget class="QLineEdit" name="var5"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>{{var2}}</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>{{var3}}</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QLineEdit" name="var2"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="var1"/>
+     </item>
+     <item row="4" column="3">
+      <widget class="QLineEdit" name="var3"/>
+     </item>
+     <item row="8" column="3">
+      <widget class="QLineEdit" name="var6"/>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>{{var6}}</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>480</y>
+     <width>211</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="saveButton">
+      <property name="text">
+       <string>保存</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="cancelButton">
+      <property name="text">
+       <string>取消</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

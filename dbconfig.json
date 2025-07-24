@@ -1,0 +1,5 @@
+{
+	"dburl":"jdbc:mysql/abc/sd"
+	"username":"zhangsan",
+	"password":"1acd"
+}
