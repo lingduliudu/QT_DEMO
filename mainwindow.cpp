@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
         Qt::WindowMinimizeButtonHint
         );
 
-
+    ui->statusbar->setSizeGripEnabled(false);
     editPath = new editpath(this);
     editPath->setModal(true);
     this->initDataList();
