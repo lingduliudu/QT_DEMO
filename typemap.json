@@ -1,0 +1,5 @@
+{
+    "int": "Integer",
+	"bigint": "Long",
+	"varchar": "String"
+}

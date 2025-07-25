@@ -31,6 +31,7 @@ private:
     QString filePath = "basedata.json";
     QString dbConfigPath = "dbconfig.json";
     QString detailConfigPath = "detailconfig.json";
+    QString typeMapPath = "typemap.json";
 
 };
 #endif // MAINWINDOW_H

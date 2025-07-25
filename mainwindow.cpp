@@ -139,10 +139,16 @@ void MainWindow::createFile(){
     QSqlQuery query("select COLUMN_NAME columnName,DATA_TYPE dataType,if(COLUMN_KEY='PRI',1,0) isPrimary from information_schema.`COLUMNS`  where TABLE_NAME='"+ui->tableName->text()+"' and TABLE_SCHEMA='"+dbConfig.value("dbName").toString()+"'  ORDER BY ORDINAL_POSITION ");
     nlohmann::json data;
     data["columns"] = nlohmann::json::array();
+    // 读取映射类型
+    QJsonObject typeMap = readJSON(typeMapPath);
     while (query.next()) {
         QString columnName = query.value("columnName").toString();
         QString dataType = query.value("dataType").toString();
         int isPri = query.value("isPrimary").toInt();
+
+        if(typeMap.contains(dataType)){
+            dataType = typeMap.value(dataType).toString();
+        }
         data["columns"].push_back({
                                    {"columnName",columnName.toStdString()},
                                    {"dataType",dataType.toStdString()},
