@@ -182,7 +182,7 @@ void MainWindow::createFile(){
         tot::createFile(obj.value("path").toString().toStdString(),replaceMap,obj.value("overwrite").toBool(),finalString);
         QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon("icon.png"), this);
         QString trayMessage = obj.value("name").toString()+"模板处理成功!";
-        Toast::showText(this,trayMessage, 2000); // 显示2秒
+        Toast::showText(i+1,this,trayMessage, 2000); // 显示2秒
 
     }
 

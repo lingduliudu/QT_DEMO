@@ -10,7 +10,14 @@ class Toast : public QWidget {
 
 public:
     static void showText(QWidget *parent, const QString &text, int duration = 2000) {
-        Toast *toast = new Toast(parent, text);
+        Toast *toast = new Toast(1,parent, text);
+        toast->show();
+
+        // 定时关闭
+        QTimer::singleShot(duration, toast, &Toast::deleteLater);
+    }
+    static void showText(int x,QWidget *parent, const QString &text, int duration = 2000) {
+        Toast *toast = new Toast(x,parent, text);
         toast->show();
 
         // 定时关闭
@@ -18,7 +25,7 @@ public:
     }
 
 private:
-    explicit Toast(QWidget *parent, const QString &text) : QWidget(parent) {
+    explicit Toast(int toastNumber,QWidget *parent, const QString &text) : QWidget(parent) {
         setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint);
         setAttribute(Qt::WA_TranslucentBackground);
         setAttribute(Qt::WA_DeleteOnClose);
@@ -41,7 +48,7 @@ private:
         if (parent) {
             QPoint pos = parent->mapToGlobal(QPoint(0, 0));
             int x = pos.x() + (parent->width() - width()) / 2;
-            int y = pos.y() + parent->height() - height() - 50;
+            int y = pos.y() + parent->height() - height() - 50*toastNumber;
             move(x, y);
         }
 
