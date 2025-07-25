@@ -15,6 +15,7 @@
 #include <QSqlQuery>
 #include <QSystemTrayIcon>
 #include <QIcon>
+#include <QProgressBar>
 #include "tot_file.h"
 #include "inja.hpp"
 #include "Toast.hpp"
@@ -131,11 +132,28 @@ void MainWindow::createFile(){
     db.setDatabaseName(dbConfig.value("dbName").toString());  //Mysql 创建的数据库名称
     db.setUserName(dbConfig.value("username").toString());
     db.setPassword(dbConfig.value("password").toString());    //安装 Mysql 设置的密码
+    db.setConnectOptions("MYSQL_OPT_CONNECT_TIMEOUT=5");
+
+    QLabel* messageLabel = new QLabel(this);
+    messageLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    messageLabel->setText("数据库连接中");
+    statusBar()->addPermanentWidget(messageLabel);
+    // 不允许操作
+    ui->runButton->setDisabled(true);
+    QApplication::processEvents();
+
     bool ok = db.open();
     if (!ok){
+        messageLabel->setText("数据库连接失败");
         QMessageBox::critical(this,"提示","数据库连接失败");
+        ui->statusbar->removeWidget(messageLabel);
+        delete messageLabel;
+        ui->runButton->setDisabled(false);
         return;
     }
+    ui->runButton->setDisabled(false);
+    ui->statusbar->removeWidget(messageLabel);
+    delete messageLabel;
     QSqlQuery query("select COLUMN_NAME columnName,DATA_TYPE dataType,if(COLUMN_KEY='PRI',1,0) isPrimary from information_schema.`COLUMNS`  where TABLE_NAME='"+ui->tableName->text()+"' and TABLE_SCHEMA='"+dbConfig.value("dbName").toString()+"'  ORDER BY ORDINAL_POSITION ");
     nlohmann::json data;
     data["columns"] = nlohmann::json::array();

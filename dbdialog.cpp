@@ -11,6 +11,8 @@ dbdialog::dbdialog(QWidget *parent)
     ui->setupUi(this);
     setFixedSize(this->size());
     setModal(true);
+    // 设置mask
+    ui->host->setInputMask(QString("000.000.000.000"));
     connect(ui->saveButton,&QPushButton::clicked,this,&dbdialog::saveDBConfig);
     connect(ui->cancelButton,&QPushButton::clicked,this,&dbdialog::hide);
 }
