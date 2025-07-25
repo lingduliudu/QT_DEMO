@@ -14,6 +14,7 @@
 #include<QSqlDatabase>
 #include <QSqlQuery>
 #include <QSystemTrayIcon>
+#include <QIcon>
 #include "tot_file.h"
 #include "inja.hpp"
 #include "Toast.hpp"
@@ -23,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":imgs/fav.ico"));
     this->setFixedSize(this->size());
     setWindowFlags(
         Qt::Window |
