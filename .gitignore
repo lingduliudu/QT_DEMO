@@ -2,17 +2,13 @@
 build/
 *.o
 *.exe
-
 # 忽略 Qt 相关构建目录
 *.pro.user
 *.qmake.stash
 *.autosave
-
 # 忽略 Qt Creator 的构建目录（比如 build-*）
 build-*/
-
 # 忽略临时文件
 *.log
 *.tmp
 ~$*
-
