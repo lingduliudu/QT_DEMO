@@ -22,7 +22,7 @@ public slots:
     void saveButton();
 private:
     Ui::editpath *ui;
-    QString filePath = "F:/basedata.json";
+    QString filePath = "basedata.json";
     int currentEditRowIndex=0;
 };
 

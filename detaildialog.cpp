@@ -8,6 +8,8 @@ detaildialog::detaildialog(QWidget *parent)
     , ui(new Ui::detaildialog)
 {
     ui->setupUi(this);
+    setFixedSize(this->size());
+    setModal(true);
     connect(ui->cancelButton,&QPushButton::clicked,this,&detaildialog::hide);
     connect(ui->saveButton,&QPushButton::clicked,this,&detaildialog::saveDetailDialog);
     // 添加映射

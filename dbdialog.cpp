@@ -10,6 +10,7 @@ dbdialog::dbdialog(QWidget *parent)
 {
     ui->setupUi(this);
     setFixedSize(this->size());
+    setModal(true);
     connect(ui->saveButton,&QPushButton::clicked,this,&dbdialog::saveDBConfig);
     connect(ui->cancelButton,&QPushButton::clicked,this,&dbdialog::hide);
 }

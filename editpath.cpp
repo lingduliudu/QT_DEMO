@@ -1,6 +1,5 @@
 #include "editpath.h"
 #include "ui_editpath.h"
-#include "mainwindow.h"
 #include <QString>
 #include <QFile>
 #include <QJsonDocument>
@@ -12,6 +11,7 @@ editpath::editpath(QWidget *parent)
     , ui(new Ui::editpath)
 {
     ui->setupUi(this);
+    setFixedSize(this->size());
     connect(ui->cancelButton,&QPushButton::clicked,this,&editpath::cancelButton);
     connect(ui->saveButton,&QPushButton::clicked,this,&editpath::saveButton);
 }
@@ -22,6 +22,10 @@ editpath::~editpath()
 }
 
 void editpath::onTableDoubleClicked(int row, int column){
+    // 判断行数
+    if(column != 1 ){
+        return;
+    }
     currentEditRowIndex = row;
     // 从数据中解析行数并赋值
     QFile file(this->filePath);

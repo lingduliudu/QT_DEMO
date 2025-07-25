@@ -33,7 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
         );
 
 
-    editPath = new editpath();
+    editPath = new editpath(this);
+    editPath->setModal(true);
     this->initDataList();
     this->initConnect();
 
