@@ -15,14 +15,14 @@ detaildialog::detaildialog(QWidget *parent)
     // 添加映射
     lineMap["entityPackage"]=ui->entityPackage;
     lineMap["requestPackage"]=ui->requestPackage;
-    lineMap["iservicePackage"]=ui->iservicePackage;
+    lineMap["iServicePackage"]=ui->iservicePackage;
     lineMap["servicePackage"]=ui->servicePackage;
-    lineMap["ifeignPackage"] = ui->ifeignPackage;
+    lineMap["iFeignPackage"] = ui->ifeignPackage;
     lineMap["feignPackage"] = ui->feignPackage;
-    lineMap["imapperPackage"] = ui->imapperPackage;
+    lineMap["iMapperPackage"] = ui->imapperPackage;
     lineMap["controllerPackage"] = ui->controllerPackage;
+    lineMap["author"] = ui->author;
     lineMap["ext1Package"] = ui->ext1Package;
-    lineMap["ext2Package"] = ui->ext2Package;
     lineMap["var1"] = ui->var1;
     lineMap["var2"] = ui->var2;
     lineMap["var3"] = ui->var3;

@@ -154,25 +154,37 @@ void MainWindow::createFile(){
     ui->runButton->setDisabled(false);
     ui->statusbar->removeWidget(messageLabel);
     delete messageLabel;
-    QSqlQuery query("select COLUMN_NAME columnName,DATA_TYPE dataType,if(COLUMN_KEY='PRI',1,0) isPrimary from information_schema.`COLUMNS`  where TABLE_NAME='"+ui->tableName->text()+"' and TABLE_SCHEMA='"+dbConfig.value("dbName").toString()+"'  ORDER BY ORDINAL_POSITION ");
+    QSqlQuery queryColumn("select COLUMN_NAME columnName,DATA_TYPE dataType,if(COLUMN_KEY='PRI',1,0) isPrimary,COLUMN_COMMENT columnComment from information_schema.`COLUMNS`  where TABLE_NAME='"+ui->tableName->text()+"' and TABLE_SCHEMA='"+dbConfig.value("dbName").toString()+"'  ORDER BY ORDINAL_POSITION ");
     nlohmann::json data;
     data["columns"] = nlohmann::json::array();
     // 读取映射类型
     QJsonObject typeMap = readJSON(typeMapPath);
-    while (query.next()) {
-        QString columnName = query.value("columnName").toString();
-        QString dataType = query.value("dataType").toString();
-        int isPri = query.value("isPrimary").toInt();
+    while (queryColumn.next()) {
+        QString columnName = queryColumn.value("columnName").toString();
+        QString columnComment = queryColumn.value("columnComment").toString();
+        QString dataType = queryColumn.value("dataType").toString();
+        int isPri = queryColumn.value("isPrimary").toInt();
 
         if(typeMap.contains(dataType)){
             dataType = typeMap.value(dataType).toString();
         }
         data["columns"].push_back({
-                                   {"columnName",columnName.toStdString()},
-                                   {"dataType",dataType.toStdString()},
-                                   {"isPrimary",isPri}
+                                   {"fieldName",tot::underscoreToCamelCaseFirstLower(columnName.toStdString())}, // 需要转成驼峰
+                                   {"fieldType",dataType.toStdString()},
+                                   {"comment",columnComment.toStdString()},
+                                   {"isPrimary",isPri},
+                                   {"searchName",tot::getFirstLetters(ui->tableName->text().toStdString())+"."+columnName.toStdString()}
         });
     }
+    // 读取表注释
+    data["tableComment"] = "";
+    QSqlQuery queryTable("SELECT TABLE_COMMENT tableComment from information_schema.`TABLES`  where TABLE_NAME='"+ui->tableName->text()+"' and TABLE_SCHEMA='"+dbConfig.value("dbName").toString()+"' ");
+    while (queryTable.next()) {
+      QString tableComment = queryTable.value("tableComment").toString();
+      data["tableComment"] = tableComment.toStdString();
+    }
+
+
     db.close();
     inja::Environment env;
     // 获取文件的
@@ -181,11 +193,13 @@ void MainWindow::createFile(){
         QJsonValue value = fileArray.at(i);
         QJsonObject obj = value.toObject();
         bool needCreate = obj.value("needCreate").toBool();
-        if(!needCreate)return;
+        if(!needCreate)continue;
         // 处理基本数据
         std::map<std::string,std::string> replaceMap;
         // 基本赋值
         data["tableName"] = ui->tableName->text().toStdString();
+        data["tableSearchName"] = tot::getFirstLetters(ui->tableName->text().toStdString());
+        data["date"] = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss").toStdString();
         data["className"] = tot::underscoreToUpperCamelCase(ui->tableName->text().toStdString());
         data["clazzName"] = tot::underscoreToCamelCaseFirstLower(ui->tableName->text().toStdString());
         //
@@ -202,9 +216,11 @@ void MainWindow::createFile(){
         std::string path = templateDir.toStdString()+obj.value("name").toString().toStdString();
         std::string resultContent = tot::resetTemplate(path);
         // 利用inja处理
+        env.set_trim_blocks(true);
+        env.set_lstrip_blocks(true);
         std::string finalString = env.render(resultContent, data);
         tot::createFile(obj.value("path").toString().toStdString(),replaceMap,obj.value("overwrite").toBool(),finalString);
-        QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon("icon.png"), this);
+       // QSystemTrayIcon *trayIcon = new QSystemTrayIcon(QIcon("icon.png"), this);
         QString trayMessage = obj.value("name").toString()+"模板处理成功!";
         Toast::showText(i+1,this,trayMessage, 2000); // 显示2秒
 

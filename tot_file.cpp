@@ -28,6 +28,10 @@ void createFile(std::string filePath,std::map<std::string,std::string> replaceMa
     if (std::filesystem::exists(filePath) && !overwrite){
         return;
     }
+    std::filesystem::path path(filePath);
+
+    // 创建目录（包括多级）
+    std::filesystem::create_directories(path.parent_path());
     std::ofstream file(filePath);  // 创建或覆盖文件
     file <<content;
     file.close();
@@ -83,6 +87,20 @@ std::string underscoreToCamelCaseFirstLower(const std::string& input) {
     }
 
     return result;
+}
+std::string getFirstLetters(const std::string& input) {
+  std::string result;
+  std::istringstream iss(input);
+  std::string word;
+
+  // 使用 getline 分割 '_'
+  while (std::getline(iss, word, '_')) {
+    if (!word.empty()) {
+      result += word[0];  // 取每个单词的首字母
+    }
+  }
+
+  return result;
 }
 
 }

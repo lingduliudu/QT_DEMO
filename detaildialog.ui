@@ -53,10 +53,10 @@
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLineEdit" name="ext1Package"/>
+      <widget class="QLineEdit" name="author"/>
      </item>
      <item row="8" column="3">
-      <widget class="QLineEdit" name="ext2Package"/>
+      <widget class="QLineEdit" name="ext1Package"/>
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="iservicePackage"/>
@@ -71,7 +71,7 @@
      <item row="8" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Ext1</string>
+        <string>author</string>
        </property>
       </widget>
      </item>
@@ -109,7 +109,7 @@
      <item row="8" column="2">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Ext2</string>
+        <string>Ext1</string>
        </property>
       </widget>
      </item>
