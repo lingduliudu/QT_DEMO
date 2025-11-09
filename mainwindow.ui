@@ -119,6 +119,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QPushButton" name="detailButton">
+       <property name="toolTip">
+        <string>参数设置</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -129,6 +132,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="linkButton">
+       <property name="toolTip">
+        <string>数据库配置</string>
+       </property>
        <property name="text">
         <string/>
        </property>
