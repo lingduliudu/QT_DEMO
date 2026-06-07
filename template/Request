@@ -1,0 +1,69 @@
+package {{requestPackage}};
+
+import java.math.BigDecimal;
+import java.io.Serializable;
+import java.util.Date;
+import java.lang.String;
+import java.lang.Long;
+import java.lang.Double;
+import java.lang.Integer;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import com.finance.common.db.plusext.QueryField;
+import com.finance.common.db.plusext.QueryType;
+
+
+/**
+ * {{tableComment}} 基本请求类
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ApiModel("{{tableComment}}基本请求类")
+public class {{className}}BaseRequest {
+
+{% for column in columns %}	
+	{% if column.fieldType != "Date" %}
+	// {{ column.comment }}
+	@ApiModelProperty(value = "{{ column.comment }}")
+	@QueryField(query = "{{column.searchName}}")
+	private {{ column.fieldType }} {{ column.fieldName }};
+	
+	{% endif %}
+{% endfor %}
+{% for column in columns %}	
+	{% if column.fieldType == "BigDecimal" %}
+	// {{ column.comment }}最小
+	@ApiModelProperty(value = "{{ column.comment }}最小")
+	@QueryField(query = "{{column.searchName}}",matchType = QueryType.GE)
+	private {{ column.fieldType }} {{ column.fieldName }}Min;
+	
+	// {{ column.comment }}最大
+	@ApiModelProperty(value = "{{ column.comment }}最大")
+	@QueryField(query = "{{column.searchName}}",matchType = QueryType.LE)
+	private {{ column.fieldType }} {{ column.fieldName }}Max;
+	
+	{% endif %}
+{% endfor %}
+{% for column in columns %}	
+	{% if column.fieldType == "Date" %}
+	// {{ column.comment }}开始
+	@ApiModelProperty(value = "{{ column.comment }}开始")
+	@QueryField(query = "{{column.searchName}}",matchType = QueryType.GE,To19 = true)
+	private {{ column.fieldType }} {{ column.fieldName }}Start;
+	
+	// {{ column.comment }}结束
+	@ApiModelProperty(value = "{{ column.comment }}结束")
+	@QueryField(query = "{{column.searchName}}",matchType = QueryType.LE,To19 = true)
+	private {{ column.fieldType }} {{ column.fieldName }}End;
+	
+	{% endif %}
+{% endfor %}
+
+}

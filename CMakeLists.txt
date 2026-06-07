@@ -102,3 +102,32 @@ install(TARGETS AutoDemo
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(AutoDemo)
 endif()
+
+# ==========================================
+# 自动化部署：自动复制附属文件和文件夹
+# ==========================================
+
+# 1. 获取编译输出的 .exe 所在目标目录
+set(TARGET_OUT_DIR "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
+
+# 2. 定义你需要复制的 4 个文件列表（假设它们都在项目源码根目录下）
+set(DEPLOY_FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/basedata.json"
+    "${CMAKE_CURRENT_SOURCE_DIR}/dbconfig.json"
+    "${CMAKE_CURRENT_SOURCE_DIR}/typemap.json"
+    "${CMAKE_CURRENT_SOURCE_DIR}/detailconfig.json"
+)
+
+# 3. 定义需要复制的文件夹路径
+set(SRC_TEMPLATE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/template")
+
+# 4. 创建一个编译后的后续动作 (Post-Build)
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    # 动作 A：循环复制那 4 个独立的 JSON 文件
+    COMMAND ${CMAKE_COMMAND} -E copy ${DEPLOY_FILES} "${TARGET_OUT_DIR}"
+
+    # 动作 B：复制整个 template 文件夹到目标目录下的 template 文件夹
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${SRC_TEMPLATE_DIR}" "${TARGET_OUT_DIR}/template"
+
+    COMMENT ">>> 正在自动复制 JSON 配置文件及 template 文件夹到输出目录..."
+)

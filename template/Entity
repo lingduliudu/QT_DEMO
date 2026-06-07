@@ -1,8 +1,58 @@
-package {{entityPackage}}
-import {{className}}
-public class {{className}}{
-    {% for column in columns %}
-      public {{ column.dataType }} {{column.columnName}};
-    {% endfor %}
+package {{entityPackage}};
+
+import java.math.BigDecimal;
+import java.io.Serializable;
+import java.util.Date;
+import java.lang.String;
+import java.lang.Long;
+import java.lang.Double;
+import java.lang.Integer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.*;
+
+
+
+/**
+ * {{tableComment}} {{className}}
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+ 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+@ApiModel(description="{{tableComment}}")
+@TableName("{{tableName}}")
+public class {{className}} implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+{% for column in columns %}	
+	{% if column.isPrimary == 1 %}
+	// {{ column.comment }}
+	@ApiModelProperty(value = "{{ column.comment }}")
+	@TableId(type = IdType.ID_WORKER_STR)
+	private {{ column.fieldType }} {{ column.fieldName }};
+	
+	{% else if column.fieldType == "Date" %}
+	// {{ column.comment }}
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@ApiModelProperty(value = "{{ column.comment }}")
+	private {{ column.fieldType }} {{ column.fieldName }};
+	
+	{% else %}
+	// {{ column.comment }}
+	@ApiModelProperty(value = "{{ column.comment }}")
+	private {{ column.fieldType }} {{ column.fieldName }};
+	
+	{% endif %}
+{% endfor %}
 
 }

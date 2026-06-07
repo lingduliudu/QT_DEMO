@@ -1,0 +1,29 @@
+package {{iServicePackage}};
+
+import java.util.List;
+import {{entityPackage}}.{{className}};
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+/**
+ * {{tableComment}}Service接口
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+public interface I{{className}}Service extends IService<{{className}}> {
+
+    /**
+     * @Description: 返回基础列表
+     * @author {{author}}
+     * @date {{date}}
+     */
+    public List<{{clazzName}}> getBaseList(QueryWrapper to);
+    /**
+     * @Description: 返回基础分页列表
+     * @author {{author}}
+     * @date {{date}}
+     */
+    public Page<{{className}}> getBasePage(Page initPage,QueryWrapper to);
+}

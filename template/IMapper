@@ -1,0 +1,31 @@
+package {{iMapperPackage}};
+
+import {{entityPackage}}.{{className}};
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import java.util.List;
+
+/**
+ * {{tableComment}}Mapper接口
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+public interface I{{className}}Mapper extends BaseMapper<{{className}}> {
+    /**
+     * @Description: 返回基础列表
+     * @author {{author}}
+     * @date {{date}}
+     */
+    List<{{className}}> getBaseList(@Param(Constants.WRAPPER)  QueryWrapper to);
+    /**
+     * @Description: 返回基础分页列表
+     * @author {{author}}
+     * @date {{date}}
+     */
+    Page<{{className}}> getBasePage(Page initPage,@Param(Constants.WRAPPER)  QueryWrapper to);
+}

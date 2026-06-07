@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="{{iMapperPackage}}.I{{className}}Mapper">
+	<sql id="search"> ${ew.customSqlSegment} </sql>
+
+	<select id="getBasePage" resultType="{{entityPackage}}.{{className}}">
+		SELECT
+			*
+		FROM
+			{{tableName}} {{tableSearchName}}
+		<include refid="search"/>
+	</select>
+	<select id="getBaseList" resultType="{{entityPackage}}.{{clazzName}}">
+		SELECT
+			*
+		FROM
+			{{tableName}} {{tableSearchName}}
+		<include refid="search"/>
+	</select>
+</mapper>

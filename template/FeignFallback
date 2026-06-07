@@ -1,0 +1,77 @@
+package ${packageFeignFallback};
+
+
+import ${packageIFeign}.IFeign${clazzName};
+import lombok.extern.slf4j.Slf4j;
+import ${packageEntity}.${clazzName};
+import org.springframework.stereotype.Component;
+
+
+/**
+ * Feign${clazzName}Fallback
+ *
+ * @author ${author}
+ * @date ${date}
+ */
+@Slf4j
+@Component
+public class Feign${clazzName}Fallback implements IFeign${clazzName}{
+   
+
+    /**
+     * 获取${comment}详细信息
+     */
+    @Override
+    public ${clazzName} getInfo(String id){
+		log.error("获取${comment}详细信息异常");
+		return null;
+	}
+    /**
+     * 新增${comment}
+     */
+	@Override
+    public boolean add(${clazzName} ${className}){
+		log.error("新增${comment}异常");
+		return false;
+	}
+	
+
+    /**
+     * 修改${comment}
+     */
+    @Override
+    public boolean edit(${clazzName} ${className}){
+		log.error("修改${comment}异常");
+		return false;
+	}
+	
+
+	/**
+     * 新增修改${comment}
+     */
+    @Override
+    public boolean saveOrUpdate(${clazzName} ${className}){
+		log.error("新增修改${comment}异常");
+		return false;
+	}
+	
+
+	/**
+     * 查询最新${comment}
+     */
+    @Override
+    public ${clazzName} getOne(${clazzName} ${className}){
+		log.error("查询最新${comment}异常");
+		return null;
+	}
+
+    /**
+     * 删除${comment}
+     */
+    @Override
+    public boolean remove(String id){
+		log.error("删除${comment}异常");
+		return false;
+	}
+
+}

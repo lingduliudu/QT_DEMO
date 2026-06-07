@@ -1,0 +1,107 @@
+package ${packageFeign};
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import com.finance.common.web.log.LogComment;
+import ${packageIFeign}.IFeign${clazzName};
+import ${packageEntity}.${clazzName};
+import com.finance.common.utils.tools.ListTool;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+import ${packageEntity}.${clazzName};
+import ${packageIService}.I${clazzName}Service;
+
+
+
+/**
+ * ${comment}Feign
+ *
+ * @author ${author}
+ * @date ${date}
+ */
+@RestController
+@AllArgsConstructor
+@RequestMapping("/feign/${className}/")
+@Api(description = "${comment} feign类")
+public class Feign${clazzName} implements IFeign${clazzName}  {
+
+
+    private I${clazzName}Service ${className}Service;
+
+    /**
+     * 获取${comment}详细信息
+     */
+    @ApiOperation(value = "获取${comment}", notes = "获取${comment}")
+    @LogComment("feign获取${comment}详细信息")
+    @Override
+    public ${clazzName} getInfo(String id){
+        return ${className}Service.getById(id);
+    }
+    /**
+     * 新增${comment}
+     */
+    @ApiOperation(value = "新增${comment}", notes = "新增${comment}")
+    @LogComment("feign新增${comment}")
+    @Override
+    public boolean add(${clazzName} ${className}){
+        return ${className}Service.save(${className});
+    }
+	
+    /**
+     * 修改${comment}
+     */
+    @ApiOperation(value = "修改${comment}", notes = "修改${comment}")
+    @LogComment("feign修改${comment}")
+    @Override
+    public boolean edit(${clazzName} ${className}){
+        return ${className}Service.updateById(${className});
+    }
+	
+
+	/**
+     * 新增修改${comment}
+     */
+    @ApiOperation(value = "新增修改${comment} id存在修改否则新增 返回id", notes = "新增修改${comment} id存在修改否则新增")
+    @LogComment("feign新增修改${comment} id存在修改否则新增")
+    @Override
+    public boolean saveOrUpdate(${clazzName} ${className}){
+        return ${className}Service.saveOrUpdate(${className});
+    }
+	
+
+	/**
+     * 查询最新${comment}
+     */
+    @ApiOperation(value = "查询最新${comment}", notes = "查询最新${comment}")
+    @LogComment("feign查询最新${comment}")
+    @Override
+    public ${clazzName} getOne(${clazzName} ${className}){
+        QueryWrapper<${clazzName}> wrapper = Wrappers.query(${className});
+        List<${clazzName}> list = ${className}Service.list(wrapper);
+        if(ListTool.isNotEmpty(list)){
+            return list.get(0);
+        }
+        return null;
+    }
+
+    /**
+     * 删除${comment}
+     */
+    @ApiOperation(value = "删除${comment}", notes = "删除${comment}")
+    @LogComment("feign删除${comment}")
+    @Override
+    public boolean remove(String id){
+        return ${className}Service.removeById(id);
+    }
+
+}

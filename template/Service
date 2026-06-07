@@ -1,0 +1,50 @@
+package {{servicePackage}};
+
+
+import java.util.List;
+import java.util.Date;
+import {{entityPackage}}.{{className}};
+import {{iServicePackage}}.I{{className}}Service;
+import {{iMapperPackage}}.I{{className}}Mapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * {{tableComment}}Service业务层处理
+ *
+ * @author {{author}}
+ * @date {{date}}
+ */
+@Service
+@Transactional
+public class {{className}}Service  extends ServiceImpl<I{{className}}Mapper, {{className}}> implements I{{className}}Service {
+
+	@Override
+	public boolean save({{className}} {{clazzName}}) {
+		int result = baseMapper.insert({{clazzName}});
+		return result >= 1;
+	}
+
+	@Override
+	public boolean updateById({{className}} {{clazzName}}) {
+		int result = baseMapper.updateById({{clazzName}});
+		return result >= 1;
+	}
+
+	@Override
+	public List<{{className}}> getBaseList(@Param(Constants.WRAPPER)  QueryWrapper to){
+		return baseMapper.getBaseList(to);
+	}
+
+	@Override
+	public Page<{{className}}> getBasePage(Page initPage,@Param(Constants.WRAPPER)  QueryWrapper to){
+		return baseMapper.getBasePage(initPage,to);
+	}
+	
+}

@@ -1,0 +1,66 @@
+package ${packageIFeign};
+
+
+import ${packageFeignFallback}.Feign${clazzName}Fallback;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.finance.common.constant.sys.AppConstant;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+import ${packageEntity}.${clazzName};
+
+
+
+/**
+ * ${comment}Feign
+ *
+ * @author ${author}
+ * @date ${date}
+ */
+@FeignClient(value = ${applicationServiceName}, path="/feign/${preUrl}${className}/",fallback = Feign${clazzName}Fallback.class)
+public interface IFeign${clazzName}  {
+
+    /**
+     * 获取${comment}详细信息
+     */
+    @GetMapping("getInfo")
+    public ${clazzName} getInfo(@RequestParam("id") String id);
+    /**
+     * 新增${comment}
+     */
+    @PostMapping("add")
+    public boolean add(@RequestBody ${clazzName} ${className});
+	
+    /**
+     * 修改${comment}
+     */
+    @PostMapping("edit")
+    public boolean edit(@RequestBody ${clazzName} ${className});
+	
+
+	/**
+     * 新增修改${comment}
+     */
+    @PostMapping("saveOrUpdate")
+    public boolean saveOrUpdate(@RequestBody ${clazzName} ${className});
+	
+
+	/**
+     * 查询最新${comment}
+     */
+    @PostMapping("getOne")
+    public ${clazzName} getOne(@RequestBody ${clazzName} ${className});
+
+    /**
+     * 删除${comment}
+     */
+    @PostMapping("remove")
+    public boolean remove(@RequestParam("id") String id);
+
+}
