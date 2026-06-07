@@ -24,6 +24,7 @@ public:
     QJsonObject readJSON(QString path);
 public slots:
     void onTableCellChanged(int row,int column);
+    void onRemoveChange();
 private:
     Ui::MainWindow *ui;
     editpath * editPath;

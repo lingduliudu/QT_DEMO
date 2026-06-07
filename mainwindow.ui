@@ -29,7 +29,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>661</width>
+      <width>721</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,6 +65,25 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="needRemove">
+       <property name="styleSheet">
+        <string notr="true">/* 1. 默认状态（未选中时）的文字颜色（例如黑色或默认深色） */
+QCheckBox {
+    color: #333333; 
+    font-size: 12px;
+}
+
+/* 2. 选中状态（checked）下的文字颜色变红 */
+QCheckBox:checked {
+    color: #ff0000; /* 纯红，也可以用 #e74c3c 等更柔和的红 */
+}</string>
+       </property>
+       <property name="text">
+        <string>删除</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="runButton">
        <property name="enabled">
         <bool>true</bool>
@@ -86,6 +105,36 @@
          <width>16777215</width>
          <height>29</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    /* 基础背景色：来自 image_2d978b.png 的青绿色 */
+    background-color: #00c4a7;
+    /* 文字颜色：纯白 */
+    color: #ffffff;
+    /* 严格直角，无圆角 */
+    border-radius: 0px;
+    /* 去掉默认边框，确保纯扁平 */
+    border: none;
+    /* 内边距 */
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: &quot;Microsoft YaHei&quot;, sans-serif;
+}
+
+/* 鼠标悬浮状态：颜色稍微提亮一点 */
+QPushButton:hover {
+    background-color: #00d9b9;
+}
+
+/* 鼠标按下状态：颜色加深，体现点击感 */
+QPushButton:pressed {
+    background-color: #00a88f;
+    /* 扁平风格下，按下时文字微调1px能带来很好的物理反馈，不需要可删掉 */
+    padding-left: 21px;
+    padding-top: 9px;
+}</string>
        </property>
        <property name="text">
         <string>执行</string>
@@ -112,8 +161,8 @@
      <rect>
       <x>750</x>
       <y>10</y>
-      <width>145</width>
-      <height>26</height>
+      <width>146</width>
+      <height>34</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -121,6 +170,44 @@
       <widget class="QPushButton" name="detailButton">
        <property name="toolTip">
         <string>参数设置</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    /* 强行固定宽高，不允许拉伸 */
+    min-width: 69px;
+    max-width: 69px;
+    min-height: 24px;
+    max-height: 24px;
+
+    /* 你的主题青绿色 */
+    background-color: #00c4a7;
+    color: #ffffff;
+    
+    /* 严格直角与扁平化 */
+    border-radius: 0px;
+    border: none;
+    
+    /* 小尺寸下，字号12px~13px最精致，14px可能会显得太满 */
+    font-size: 12px; 
+    font-weight: bold;
+    font-family: &quot;Microsoft YaHei&quot;, sans-serif;
+    
+    /* 清除内边距，靠强制宽高来撑开 */
+    padding: 0px; 
+}
+
+/* 鼠标悬浮状态 */
+QPushButton:hover {
+    background-color: #00d9b9;
+}
+
+/* 鼠标按下状态 */
+QPushButton:pressed {
+    background-color: #00a88f;
+    /* 小尺寸下的点击反馈，文字向下向右微移 1 像素 */
+    padding-left: 1px;
+    padding-top: 1px;
+}</string>
        </property>
        <property name="text">
         <string/>
@@ -134,6 +221,44 @@
       <widget class="QPushButton" name="linkButton">
        <property name="toolTip">
         <string>数据库配置</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    /* 强行固定宽高，不允许拉伸 */
+    min-width: 69px;
+    max-width: 69px;
+    min-height: 24px;
+    max-height: 24px;
+
+    /* 你的主题青绿色 */
+    background-color: #00c4a7;
+    color: #ffffff;
+    
+    /* 严格直角与扁平化 */
+    border-radius: 0px;
+    border: none;
+    
+    /* 小尺寸下，字号12px~13px最精致，14px可能会显得太满 */
+    font-size: 12px; 
+    font-weight: bold;
+    font-family: &quot;Microsoft YaHei&quot;, sans-serif;
+    
+    /* 清除内边距，靠强制宽高来撑开 */
+    padding: 0px; 
+}
+
+/* 鼠标悬浮状态 */
+QPushButton:hover {
+    background-color: #00d9b9;
+}
+
+/* 鼠标按下状态 */
+QPushButton:pressed {
+    background-color: #00a88f;
+    /* 小尺寸下的点击反馈，文字向下向右微移 1 像素 */
+    padding-left: 1px;
+    padding-top: 1px;
+}</string>
        </property>
        <property name="text">
         <string/>

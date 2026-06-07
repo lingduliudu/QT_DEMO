@@ -37,6 +37,15 @@ void createFile(std::string filePath,std::map<std::string,std::string> replaceMa
     file.close();
 }
 
+void removeFile(std::string filePath,std::map<std::string,std::string> replaceMap){
+  // 替换filepath
+  for(auto& pair:replaceMap){
+    filePath = replacePlaceholder(filePath, pair.first, pair.second);
+  }
+  // 直接删除
+  if (std::filesystem::exists(filePath))std::filesystem::remove(filePath);
+}
+
 std::string underscoreToUpperCamelCase(const std::string& input) {
     std::string pascal_case_str;
     // 初始为 true，确保字符串的第一个字符（如果不是下划线）被大写

@@ -11,7 +11,7 @@
 #include <QDir>
 #include <QJsonArray>
 #include <QDebug>
-#include<QSqlDatabase>
+#include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSystemTrayIcon>
 #include <QIcon>
@@ -189,6 +189,7 @@ void MainWindow::createFile(){
     inja::Environment env;
     // 获取文件的
     QJsonArray fileArray = readJSONArray(filePath);
+    bool isDelete = ui->needRemove->isChecked();
     for (int i = 0; i < fileArray.size(); ++i) {
         QJsonValue value = fileArray.at(i);
         QJsonObject obj = value.toObject();
@@ -214,6 +215,13 @@ void MainWindow::createFile(){
             replaceMap["{{"+key.toStdString()+"}}"] = replaceJSON.value(key).toString().toStdString();
         }
         std::string path = templateDir.toStdString()+obj.value("name").toString().toStdString();
+        // 判断是否删除
+        if(isDelete){
+          tot::removeFile(obj.value("path").toString().toStdString(),replaceMap);
+          QString trayMessage = obj.value("name").toString()+"删除成功!";
+          Toast::showText(i+1,this,trayMessage, 2000); // 显示2秒
+          continue;
+        }
         std::string resultContent = tot::resetTemplate(path);
         // 利用inja处理
         env.set_trim_blocks(true);
@@ -249,6 +257,9 @@ QJsonObject MainWindow::readJSON(QString path){
     QJsonDocument doc = QJsonDocument::fromJson(jsonData);
     QJsonObject obj = doc.object();
     return obj;
+}
+void MainWindow::onRemoveChange(){
+  // 字体变红
 }
 void MainWindow::onTableCellChanged(int row, int column){
     // 更新数据

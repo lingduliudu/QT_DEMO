@@ -10,6 +10,7 @@ namespace tot{
 std::string replacePlaceholder(std::string& input,std::string& placeholder,std::string& replacement);
 std::string resetTemplate(std::string filePath);
 void createFile(std::string filePath,std::map<std::string,std::string> replaceMap,bool overwrite,std::string& content);
+void removeFile(std::string filePath,std::map<std::string,std::string> replaceMap);
 std::string underscoreToUpperCamelCase(const std::string& input);
 std::string underscoreToCamelCaseFirstLower(const std::string& input);
 std::string getFirstLetters(const std::string& input);
